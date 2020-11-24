@@ -5,10 +5,17 @@ let readline = require('readline').createInterface({
 });
 let input = [];
 readline.on('line', line => {
+
     input.push(line);
     if (input.length === 2) {
+        console.time('test')
         readline.close();
-        input = input.map(line => line.split(' ').map(val => parseInt(val)));
+        for (let p = 0; p < input.length; p++) {
+            input[p] = input[p].split(' ');
+            for (let q = 0; q < input[p].length; q++) {
+                input[p][q] = parseInt(input[p][q]);
+            }
+        }
         let n = input[0][0];
         let x = input[0][1];
         let coins = input[1];
@@ -24,6 +31,8 @@ readline.on('line', line => {
                 }
             }
         }
+        console.timeEnd('test')
+
         console.log(dp[x] === Infinity ? -1 : dp[x]);
     }
 });

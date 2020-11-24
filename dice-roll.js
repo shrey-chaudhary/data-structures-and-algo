@@ -1,6 +1,3 @@
-const { readlink } = require('fs');
-const { relative } = require('path');
-
 let readLine = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout,
