@@ -6,26 +6,16 @@ let readline = require('readline').createInterface({
 let input = [];
 readline.on('line', (line) => {
     input.push(line);
-    if (input.length === 1) {
+    if (input.length === 2) {
         readline.close();
-        if (!line) {
-            console.log(0);
-            return;
+        input = input.map(line => line.split(' ').map(val => parseInt(val)));
+        let n = input[0][0];
+        let arr = input[1];
+        let sum = n * (n + 1) / 2;
+        let missingSum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            missingSum += arr[i];
         }
-        const chars = line.trim().split('');
-        let max = 1;
-        let currSubStrLen = 1;
-        let currChr = chars[0];
-        for (let i = 1; i < chars.length; i++) {
-            if (currChr === chars[i]) {
-                currSubStrLen++
-            } else {
-                currChr = chars[i];
-
-                currSubStrLen = 1;
-            }
-            max = currSubStrLen > max ? currSubStrLen : max;
-        }
-        console.log(max)
+        console.log(sum - missingSum);
     }
 })
